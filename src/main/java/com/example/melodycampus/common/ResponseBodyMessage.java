@@ -1,4 +1,4 @@
-package com.example.melodycampus.tools;
+package com.example.melodycampus.common;
 
 import lombok.Data;
 

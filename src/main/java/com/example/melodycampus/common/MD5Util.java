@@ -1,4 +1,4 @@
-package com.example.melodycampus.tools;
+package com.example.melodycampus.common;
 
 import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
