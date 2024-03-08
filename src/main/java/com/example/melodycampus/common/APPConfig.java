@@ -20,6 +20,9 @@ public class APPConfig implements WebMvcConfigurer {
     // 不拦截的 url 集合
     List<String> excludes = new ArrayList<String>(){{
         // TODO: 2024/2/23 添加过滤的接口
+        add("/js/**");  // 放行 static/js 下的所有文件
+        add("/css/**"); // 放行 static/css 下的所有文件
+        add("/img/**"); // 放行 static/img 下的所有文件
         add("/user/login"); // 放行登录接口
         add("/user/reg"); // 放行注册接口
         add("/reg.html"); //放行注册页面

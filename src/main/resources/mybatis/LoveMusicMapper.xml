@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.melodycampus.mapper.LoveMusicMapper">
+
+    <select id="findLoveMusicByMusicIdAndUserId" resultType="com.example.melodycampus.model.Music">
+        select * from lovemusic where user_id=#{arg0} and music_id=#{arg1};
+    </select>
+
+    <insert id="insertLoveMusic">
+        insert into lovemusic(user_id,music_id) values(#{arg0},#{arg1});
+    </insert>
+
+
+    <select id="findLoveMusicByUserId" resultType="com.example.melodycampus.model.Music">
+        select m.* from lovemusic lm,music m where m.id = lm.music_id and lm.user_id=#{userId};
+    </select>
+
+
+    <select id="findLoveMusicBykeyAndUID" resultType="com.example.melodycampus.model.Music">
+        select m.* from lovemusic lm,music m where m.id = lm.music_id and lm.user_id=#{arg0} and title like concat('%', #{arg1}, '%');
+    </select>
+
+    <select id="findLoveMusicIdByUserId" resultType="java.lang.Integer">
+        select music_id from lovemusic where user_id=#{userId};
+    </select>
+
+    <delete id="deleteLoveMusic" parameterType="java.lang.Integer">
+        delete from lovemusic where user_id=#{arg0} and music_id=#{arg1};
+    </delete>
+
+    <delete id="deleteLoveMusicByMusicId" parameterType="java.lang.Integer">
+        delete from lovemusic where music_id=#{musicId};
+    </delete>
+
+</mapper>
+

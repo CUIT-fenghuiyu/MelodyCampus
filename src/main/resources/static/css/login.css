@@ -1,0 +1,70 @@
+.login-container {
+    width: 100%;
+    height: calc(100vh - 80px); /* 导航栏高度为 80px */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.login-dialog {
+    width: 400px;
+    height: 340px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+}
+
+.login-dialog h3 {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.login-dialog .row {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-dialog .row span {
+    display: block;
+    width: 100px;
+    font-weight: 700;
+}
+
+.login-dialog .row input {
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 24px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    text-indent: 10px;
+}
+
+.login-dialog button {
+    width: 150px; /* 设置按钮宽度 */
+    height: 50px;
+    color: white;
+    background-color: green;
+    border: none;
+    border-radius: 10px;
+    margin-left: 10px; /* 设置左侧间距，使其与注册账号之间有一定距离 */
+    margin-top: 10px;
+}
+
+
+
+/* 设置 a 标签的样式，包括文本颜色和文本装饰 */
+.row a {
+    color: green; /* 设置注册账号文本颜色 */
+    text-decoration: none; /* 移除文本装饰 */
+    margin-top: 30px;
+    margin-right: 10px;
+    font-size: 15px;
+}
+
+.login-dialog button:active {
+    background-color: #666;
+}

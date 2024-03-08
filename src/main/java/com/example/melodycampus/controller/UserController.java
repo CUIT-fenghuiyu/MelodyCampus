@@ -32,12 +32,13 @@ public class UserController
 
         // 判断用户名是否存在
         if (user != null) {
-            return new ResponseBodyMessage<>(-1,"用户名已存在，请重新输入！", null);
+            return new ResponseBodyMessage<>(-2,"用户名已存在，请重新输入！", null);
         }
 
         // 添加用户，并返回用户信息
         int result = userMapper.add(username, MD5Util.encrypt(password));
         if(result==1){
+            System.out.println(userMapper.selectByName(username));
             return new ResponseBodyMessage<>(0,"注册成功", userMapper.selectByName(username));
         }else {
             return new ResponseBodyMessage<>(-1,"注册失败", null);
@@ -57,7 +58,9 @@ public class UserController
         }else {
             // 将用户信息存入session中
             request.getSession().setAttribute(Constant.USERINFO_SESSION_KEY,user);
+            System.out.println(user);
             return new ResponseBodyMessage<>(0,"登录成功！",user);
         }
     }
+
 }

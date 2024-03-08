@@ -47,4 +47,26 @@ public interface MusicMapper {
      */
     List<Music> findMusicByName(String musicName);
 
+    /**
+     * 歌曲喜欢数量+1
+     * @param id
+     * @return
+     */
+    int addLikesCount(int id);
+
+    /**
+     * 歌曲喜欢数量-1
+     * @param id
+     * @return
+     */
+    int reduceLikesCount(int id);
+
+    /**
+     * 查询我上传的音乐
+     * @param musicName
+     * @return
+     */
+    List<Music> findMyMusicByUidAndName(int userId, String musicName);
+
+    List<Music> findMyMusicByUid(int userId);
 }

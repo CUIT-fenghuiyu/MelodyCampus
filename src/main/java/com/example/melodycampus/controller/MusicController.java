@@ -2,6 +2,7 @@ package com.example.melodycampus.controller;
 
 import com.example.melodycampus.common.ResponseBodyMessage;
 import com.example.melodycampus.common.SessionUtil;
+import com.example.melodycampus.mapper.LoveMusicMapper;
 import com.example.melodycampus.mapper.MusicMapper;
 import com.example.melodycampus.model.Music;
 import com.example.melodycampus.model.User;
@@ -46,6 +47,9 @@ public class MusicController {
 
     @Autowired
     private MusicMapper musicMapper;
+
+    @Autowired
+    private LoveMusicMapper loveMusicMapper;
 
     @Value("${music.local.path}")
     private String UPLOAD_PATH;
@@ -208,7 +212,7 @@ public class MusicController {
 
                 if(file.delete()) {
                     //同步删除用户lovemusic表中的该条音乐数据
-                    // TODO: 2024/2/24  loveMusicMapper.deleteLoveMusicByMusicId(musicId);
+                    loveMusicMapper.deleteLoveMusicByMusicId(musicId);
                 }else {
                     return new ResponseBodyMessage<>(-1,"Service lovemusic delete filed",false);
                 }
@@ -234,9 +238,26 @@ public class MusicController {
         }else {
             musicList = musicMapper.findMusic();
         }
-
         return new ResponseBodyMessage<>(0, "find success", musicList);
-
     }
+
+    /**
+     * 查询我上传的音乐（根据是否有音乐名返回）
+     * @param musicName
+     */
+    @RequestMapping("findMyMusic")
+    public ResponseBodyMessage<List<Music>> findMyMusic(@RequestParam(required = false) String musicName,
+                                                        HttpServletRequest request) {
+        int userId = SessionUtil.getLoginUser(request).getId();
+        List<Music> musicList = null;
+        if (musicName != null){
+            musicList = musicMapper.findMyMusicByUidAndName(userId,musicName);
+        }else {
+            musicList = musicMapper.findMyMusicByUid(userId);
+        }
+
+        return new ResponseBodyMessage<>(0, "find my musicList success", musicList);
+    }
+
 
 }

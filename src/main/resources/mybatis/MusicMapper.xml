@@ -7,13 +7,21 @@
         values(#{arg0},#{arg1},#{arg2},#{arg3},#{arg4});
     </insert>
 
-    <select id="findMusicById" resultType="com.example.melodycampus.model.Music">
-        select * from music where id = #{id};
-    </select>
-
     <delete id="deleteMusicById" parameterType="java.lang.Integer">
         delete from music where id = #{id};
     </delete>
+
+    <update id="addLikesCount">
+        update music set likes = likes + 1 where id = #{id};
+    </update>
+
+    <update id="reduceLikesCount">
+        update music set likes = likes - 1 where id = #{id};
+    </update>
+
+    <select id="findMusicById" resultType="com.example.melodycampus.model.Music">
+        select * from music where id = #{id};
+    </select>
 
     <select id="findMusic" resultType="com.example.melodycampus.model.Music">
         select * from music;
@@ -22,4 +30,13 @@
     <select id="findMusicByName" resultType="com.example.melodycampus.model.Music">
         select * from music where title like concat('%',#{musicName},'%');
     </select>
+
+    <select id="findMyMusicByUidAndName" resultType="com.example.melodycampus.model.Music">
+        select * from music where title like concat('%', #{arg1}, '%') and userid = #{arg0};
+    </select>
+
+    <select id="findMyMusicByUid" resultType="com.example.melodycampus.model.Music">
+        select * from music where userid = #{userId};
+    </select>
+
 </mapper>

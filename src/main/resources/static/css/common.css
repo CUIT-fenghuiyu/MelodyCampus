@@ -1,0 +1,55 @@
+/*
+ * 全局样式重置
+ */
+* {
+    margin: 0; /* 将外边距重置为0 */
+    padding: 0; /* 将内边距重置为0 */
+    box-sizing: border-box; /* 设置盒模型为border-box，方便计算元素的宽度和高度 */
+}
+
+/*
+ * 设置整体页面高度
+ */
+html, body {
+    margin: 0;
+    padding: 0;
+    background-image: url("../img/4.jpg");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* 可以加上这个属性，让背景图固定，不随内容滚动 */
+}
+
+
+/*
+ * 上方导航栏样式
+ */
+.nav {
+    width: 100%; /* 设置导航栏宽度为100% */
+    height: 80px; /* 设置导航栏高度为80px */
+    background-color: rgba(51, 51, 51, 0); /* 设置导航栏背景颜色为透明的 */
+    color: black; /* 设置导航栏文字颜色为黑色 */
+    font-weight: bold;
+    font-size: x-large;
+    display: flex; /* 使用弹性布局 */
+    justify-content: left; /* 将子元素左对齐 */
+    align-items: center; /* 将子元素垂直居中对齐 */
+}
+
+/*
+ * 导航栏中的图标样式
+ */
+.nav img {
+    width: 40px; /* 设置图标宽度为40px */
+    height: 40px; /* 设置图标高度为40px */
+    margin-left: 30px; /* 设置左边距为30px */
+    margin-right: 10px; /* 设置右边距为10px */
+    border-radius: 50%; /* 设置圆角为50%实现圆形效果 */
+}
+
+/*
+ * 导航栏中的占位器样式
+ */
+.nav .spacer {
+    width: 70%; /* 设置占位器宽度为70% */
+}

@@ -18,4 +18,5 @@ public class Music {
     private String time;
     private String url;
     private int userid;
+    private int likes;
 }
