@@ -1,0 +1,77 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MelodyCampusMusicplayer</title>
+    <!-- 引入 jquery -->
+    <script src="js/jquery.min.js"></script>
+    <!--引入播放组件-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
+</head>
+
+<style>
+    #player {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        width: 35%; /* 设置导航栏宽度为100% */
+        height: 66px; /* 设置导航栏高度为66px */
+    }
+
+    * {
+        margin: 0; /* 将外边距重置为0 */
+        padding: 0; /* 将内边距重置为0 */
+        box-sizing: border-box; /* 设置盒模型为border-box，方便计算元素的宽度和高度 */
+    }
+
+    /*
+     * 设置整体页面高度
+     */
+    html, body {
+        margin: 0;
+        padding: 0;
+    }
+</style>
+
+<body>
+
+<!--播放歌曲-->
+<div id="player"></div>
+
+</body>
+
+<script>
+    window.addEventListener('message', function(event) {
+        // todo:检查event.origin是否是信任的源
+        if (event.data.action === 'play') {
+            // 调用播放器的播放方法
+            playMusic(event.data.url, event.data.name, event.data.artist);
+        }
+    });
+
+    /*初始化播放器*/
+    const ap = new APlayer({
+        container: document.getElementById('player'),
+        audio: [{
+            name: '',
+            artist: '',
+            url: '',
+        }],
+    });
+
+    function playMusic(path, name, artist) {
+        ap.list.clear();
+        ap.list.add([{
+            name: name,
+            artist: artist,
+            url: path,
+        }]);
+        $('#player').show();
+        ap.play();
+    }
+</script>
+
+</html>

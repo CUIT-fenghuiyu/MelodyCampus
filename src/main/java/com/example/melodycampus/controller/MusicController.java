@@ -60,8 +60,10 @@ public class MusicController {
                                                     HttpServletRequest request,
                                                     HttpServletResponse resp) throws CannotReadException, TagException, InvalidAudioFrameException, ReadOnlyFileException, IOException {
 
+
+
         // 获取文件全名＋文件类型
-        String fileNameAndType = file.getOriginalFilename();
+        String fileNameAndType = singer + "-" + file.getOriginalFilename();
 
         // 获取文件路径
         String filePath = UPLOAD_PATH + fileNameAndType;
@@ -71,6 +73,11 @@ public class MusicController {
 
         // 获取文件对象
         File dest = new File(filePath);
+
+        // 判断文件是否已存在
+        if (dest.exists()) {
+            return new ResponseBodyMessage<>(-1, "音乐和歌手已存在，请勿重复上传", false);
+        }
 
         // 校验文件类型是否为 MP3
         // TODO: 2024/2/24 底层判断文件类型是否为 MP3
@@ -111,9 +118,6 @@ public class MusicController {
         try {
             int ret = musicMapper.insert(title,singer,time,url,userid);
             if(ret == 1) {
-                //这里应该跳转到音乐列表页面
-                //resp.sendRedirect("/list.html");
-                // TODO: 2024/2/24 list.html 
                 return new ResponseBodyMessage<>(0, "storage success", true);
             }else {
                 dest.delete();

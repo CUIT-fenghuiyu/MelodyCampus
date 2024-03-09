@@ -8,6 +8,7 @@
 
     <!-- 引入 jquery -->
     <script src="js/jquery.min.js"></script>
+
 </head>
 
 <style>
@@ -29,15 +30,6 @@
     .singer-input {
         width: 150px; /* 设置输入框宽度 */
         margin-right: 10px; /* 与上传按钮之间的间距 */
-    }
-
-    /* 设置顶部右侧按钮容器的样式 */
-    .top-right-buttons {
-        position: absolute; /* 使用绝对定位 */
-        right: calc((100% - 80%) / 2); /* 将容器右侧与表格右侧对齐 */
-        top: 20px; /* 设置容器距顶部的距离 */
-        display: flex; /* 使用flex布局 */
-        gap: 10px; /* 设置按钮之间的间距 */
     }
 
     /* 设置顶部右侧按钮的样式 */
@@ -139,7 +131,7 @@
 
     .top-right-buttons {
         position: absolute;
-        right: calc((100% - 80%) / 2); /* Align with the right edge of the list */
+        right: 40px; /* Align with the right edge of the list */
         top: 20px; /* Position at the top right */
         display: flex;
         gap: 10px;
@@ -168,8 +160,11 @@
 
 <!-- 顶部右侧按钮 -->
 <div class="top-right-buttons">
-    <a href="myFavorite.html" class="btn btn-outline-primary"><i class="fas fa-heart"></i> 喜欢列表</a>
-    <a href="MySong.html" class="btn btn-outline-secondary"><i class="fas fa-music"></i> 我的歌曲</a>
+    <button class="btn btn-outline-success"><i class="fas fa-square"></i> 音乐广场</button>
+    <button href="myFavorite.html" class="btn btn-outline-primary"><i class="fas fa-heart"></i> 喜欢列表</button>
+    <button href="MySong.html" class="btn btn-outline-secondary"><i class="fas fa-music"></i> 我的歌曲</button>
+    <!-- 新增注销按钮 -->
+    <a href="login.html" class="btn btn-outline-danger"><i class="fas fa-sign-out-alt"></i> 注销</a>
 </div>
 
 <!-- 轮播图位置 -->
@@ -218,6 +213,12 @@
     <!--从数据库中获取所有歌曲信息-->
     </tbody>
 </table>
+
+<!--歌曲播放组件-->
+<iframe src="player.html" id="musicPlayer" style="height: 100px; width: 100%; border: none;">
+
+</iframe>
+
 </body>
 
 <script type="text/javascript">
@@ -247,7 +248,7 @@
                         html += "<td><input type='checkbox'></td>";
                         html += "<td>" + music.title + "</td>";
                         html += "<td>" + music.singer + "</td>";
-                        html += "<td><button class='btn btn-success' onclick=''>播放</button></td>";
+                        html += "<td><button class='btn btn-success' onclick='playMusic(\""+ music.url +".mp3" +"\",  \"" + music.title + "\", \"" + music.singer + "\")'>播放</button></td>";
                         html += "<td>";
                         html += "<div class='btn-group'>";
                         html += "<button class='btn btn-secondary' onclick='musicMark("+music.id+")'><i class='fas fa-heart' data-song-id="+ music.id +"></i></button>";
@@ -367,17 +368,26 @@
                         alert("上传成功！");
                         loadMusic();
                     } else {
-                        alert("上传失败！请稍后重试");
+                        console.log(result.msg);
+                        alert("上传失败："+result.message);
                     }
                 }
             })
         });
     });
 
-</script>
-
-
-
+    /*使用postMessage API在主页面和iframe之间传递消息。*/
+    function playMusic(url, name, artist){
+        var playerIframe = document.getElementById('musicPlayer');
+        playerIframe.contentWindow.postMessage({
+            action: 'play',
+            url: url,
+            name: name,
+            artist: artist
+        }, window.location.origin);
+        /*定位到音乐播放器*/
+        window.location.href = "#musicPlayer";
+    };
 </script>
 
 </html>
