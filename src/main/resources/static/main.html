@@ -8,6 +8,9 @@
 
     <!-- 引入 jquery -->
     <script src="js/jquery.min.js"></script>
+    <script src="js/MusicSquare.js"> </script>
+    <script src="js/MyFavorite.js"> </script>
+    <script src="js/MySong.js"> </script>
 
 </head>
 
@@ -145,15 +148,19 @@
         color: red; /*歌曲被收藏的颜色*/
     }
 
+    /*点击右上角按钮后的效果*/
+    .clicked {
+        transform: translateY(-2px);
+        background: linear-gradient(45deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.5)) !important; /* 加深渐变背景 */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5) !important; /* 加深阴影效果 */
+    }
 </style>
 
 <body>
 <!-- 导航栏 -->
 <div class="nav">
-    <a href="/main.html">
-        <img src="img/logo.jpg" alt="MelodyCampus logo" >
+    <img src="img/logo.jpg"  alt="MelodyCampus logo" class="logo">
 
-    </a>
     <span class="title">MelodyCampus</span>
     <span class="spacer"></span>
 </div>
@@ -161,8 +168,8 @@
 <!-- 顶部右侧按钮 -->
 <div class="top-right-buttons">
     <button class="btn btn-outline-success"><i class="fas fa-square"></i> 音乐广场</button>
-    <button href="myFavorite.html" class="btn btn-outline-primary"><i class="fas fa-heart"></i> 喜欢列表</button>
-    <button href="MySong.html" class="btn btn-outline-secondary"><i class="fas fa-music"></i> 我的歌曲</button>
+    <button class="btn btn-outline-primary"><i class="fas fa-heart"></i> 喜欢列表</button>
+    <button class="btn btn-outline-secondary"><i class="fas fa-music"></i> 我的歌曲</button>
     <!-- 新增注销按钮 -->
     <a href="login.html" class="btn btn-outline-danger"><i class="fas fa-sign-out-alt"></i> 注销</a>
 </div>
@@ -172,7 +179,7 @@
     <div id="carouselExampleIndicators" class="carousel slide carousel" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="https://placehold.co/800x200" class="d-block w-100" alt="First slide">
+
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -188,7 +195,7 @@
 
 <div class="search-bar">
     <input type="text" class="form-control search-input" placeholder="请输入歌名">
-    <button class="btn btn-primary" onclick="selectByMusicName()">查询</button>
+    <button class="btn btn-primary">查询</button>
 </div>
 
 <div class="action-buttons">
@@ -197,7 +204,7 @@
     <input type="text" class="form-control singer-input" placeholder="请输入歌手名称">
     <button class="btn btn-primary submit-btn" >上传</button>
 
-    <!--<button class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i> 删除选中</button>-->
+    <button class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i> 删除选中</button>
 </div>
 <table class="table content-table">
     <thead>
@@ -221,173 +228,129 @@
 
 </body>
 
-<script type="text/javascript">
-    /*HTML文档结构加载完毕后调用*/
-    $(function(){
-        loadMusic();
-    });
-
-    /*加载所有歌曲信息*/
-    function loadMusic(musicName){
-        $.ajax({
-            url: "/music/findMusic",
-            type: "GET",
-            data: {
-                "musicName": musicName
-            },
-            success: function (result) {
-                console.log(result)
-
-                var html = "";
-                if (result.status == 0) {
-                    var musicList = result.data;
-
-                    for (var i = 0; i < musicList.length; i++) {
-                        var music = musicList[i];
-                        html += "<tr>";
-                        html += "<td><input type='checkbox'></td>";
-                        html += "<td>" + music.title + "</td>";
-                        html += "<td>" + music.singer + "</td>";
-                        html += "<td><button class='btn btn-success' onclick='playMusic(\""+ music.url +".mp3" +"\",  \"" + music.title + "\", \"" + music.singer + "\")'>播放</button></td>";
-                        html += "<td>";
-                        html += "<div class='btn-group'>";
-                        html += "<button class='btn btn-secondary' onclick='musicMark("+music.id+")'><i class='fas fa-heart' data-song-id="+ music.id +"></i></button>";
-                        html += "<button class='btn btn-info'>查看</button>";
-                        html += "</div>";
-                        html += "</td>";
-                        html += "</tr>";
-                    }
-                }
-                $("#musicList").html(html);
-
-                /*更新音乐列表后，对每首歌曲检查喜好状态*/
-                updateLikeStatus();
-            }
-        });
-    }
-
-    /*根据歌名查询歌曲信息*/
-    function selectByMusicName() {
-        var musicName = $(".search-input").val();
-        console.log(musicName);
-        loadMusic(musicName);
-    }
-
-    /* 音乐收藏/取消收藏功能 */
-    function musicMark(id) {
-        $.ajax({
-            url: "/lovemusic/likeMusic",
-            type: "POST",
-            data: {
-                "musicId": id
-            },
-            success: function (result) {
-                console.log(result)
-                // 检查音乐是否被收藏
-                $.ajax({
-                    url: "/lovemusic/getLoveMusicIdList",
-                    type: "get",
-                    success: function (result) {
-                        console.log(result)
-                        // 判断音乐ID是否在收藏列表中
-                        if (result.data.indexOf(id) != -1) {
-                            $("i[data-song-id='" + id + "']").addClass("liked");
-                        } else {
-                            $("i[data-song-id='" + id + "']").removeClass("liked");
-                        }
-
-                    }
-                })
-
-            }
-        });
-    }
-
-    /*更新音乐列表后，对被收藏的音乐更新UI */
-    function updateLikeStatus() {
-        $.ajax({
-            url: "/lovemusic/getLoveMusicIdList",
-            type: "GET",
-            success: function(result) {
-                console.log(result);
-                // 为每个歌曲Id添加喜欢样式
-                var musicIdList = result.data;
-                for (var i = 0; i < musicIdList.length; i++) {
-                    var id = musicIdList[i];
-                    $("i[data-song-id='" + id + "']").addClass("liked");
-                }
-
-            }
-        });
-    }
-
-    /*上传音乐功能*/
+<script>
+    /*页面加载完成时调用loadMusic()*/
     $(function() {
-        $('.submit-btn').on('click', function(e) {
-            // 阻止表单默认提交事件
-            e.preventDefault();
+         loadMusic();
 
-            var fileInput = $('.upload-btn')[0]; // 获取文件输入元素
-            var singerInput = $('.singer-input').val(); // 获取并清除歌手输入框两侧的空格
+        $(".search-bar .btn-primary").off('click');
+        // 然后为它绑定一个新的click事件处理程序
+        $(".search-bar .btn-primary").on('click', selectByMusicName);
+        $(".top-right-buttons .btn-outline-success").addClass("clicked");
 
-            // 检查是否已选择文件
-            if (!fileInput.files.length) {
-                alert("请上传音乐文件！");
-                return;
-            }
+        // 隐藏删除选中音乐按钮
+        $(".action-buttons .btn-outline-danger").hide();
 
-            // 获取文件并检查类型
-            var file = fileInput.files[0];
-            if (file.type !== 'audio/mpeg') {
-                alert("仅支持MP3格式的音乐文件！");
-                return;
-            }
+    });
 
-            // 检查是否已填写歌手名称
-            if (!singerInput) {
-                alert("请填写歌手名称！");
-                return;
-            }
+    // 为按钮设置点击事件监听器
+    $(function() {
+        /*音乐广场*/
+        $(".top-right-buttons .btn-outline-success, .logo").click(function() {
+            loadMusic();
+            $(".search-bar .btn-primary").off('click');
+            // 然后为它绑定一个新的click事件处理程序
+            $(".search-bar .btn-primary").on('click', selectByMusicName);
 
-            // 进行音乐提交
-            console.log("文件和歌手名称验证通过");
-            // 使用 FormData 进行音乐提交
-            var formData = new FormData();
-            formData.append('singer', singerInput);  // 添加歌手名称
-            formData.append('filename', file);       // 添加文件
-            // 音乐提交逻辑...
-            $.ajax({
-                url: "/music/upload",
-                type: "POST",
-                data: formData,
-                processData: false,  // 告诉jQuery不要处理发送的数据
-                contentType: false,  // 告诉jQuery不要设置Content-Type请求头
-                success: function (result) {
-                    console.log(result);
-                    if (result.status == 0) {
-                        alert("上传成功！");
-                        loadMusic();
-                    } else {
-                        console.log(result.msg);
-                        alert("上传失败："+result.message);
-                    }
-                }
-            })
+            // 显示上传音乐按钮
+            $(".action-buttons .upload-btn, .action-buttons .singer-input, .action-buttons .submit-btn").show();
+
+            // 隐藏删除选中音乐按钮
+            $(".action-buttons .btn-outline-danger").hide();
+        });
+
+        /*喜欢列表*/
+        $(".top-right-buttons .btn-outline-primary").click(function() {
+            loadLoveMusic();
+            $(".search-bar .btn-primary").off('click');
+            // 绑定一个新的click事件处理程序
+            $(".search-bar .btn-primary").on('click', selectMyLoveByMusicName);
+
+            // 隐藏上传音乐按钮
+            $(".action-buttons .upload-btn, .action-buttons .singer-input, .action-buttons .submit-btn").hide();
+
+            // 隐藏删除选中音乐按钮
+            $(".action-buttons .btn-outline-danger").hide();
+        });
+
+        /*我的歌曲*/
+        $(".top-right-buttons .btn-outline-secondary").click(function() {
+            loadMyMusic();
+            $(".search-bar .btn-primary").off('click');
+            // 然后为它绑定一个新的click事件处理程序
+            $(".search-bar .btn-primary").on('click', selectMySongByMusicName);
+
+            // 隐藏上传音乐按钮
+            $(".action-buttons .upload-btn, .action-buttons .singer-input, .action-buttons .submit-btn").hide();
+
+            // 显示删除选中音乐按钮
+            $(".action-buttons .btn-outline-danger").show();
         });
     });
 
-    /*使用postMessage API在主页面和iframe之间传递消息。*/
-    function playMusic(url, name, artist){
-        var playerIframe = document.getElementById('musicPlayer');
-        playerIframe.contentWindow.postMessage({
-            action: 'play',
-            url: url,
-            name: name,
-            artist: artist
-        }, window.location.origin);
-        /*定位到音乐播放器*/
-        window.location.href = "#musicPlayer";
-    };
+    /*点击右上角按钮后的效果*/
+    $(function() {
+        // 当这三个按钮中的任何一个被点击时
+        $(".top-right-buttons .btn-outline-success, .top-right-buttons .btn-outline-primary, .top-right-buttons .btn-outline-secondary").click(function() {
+            // 首先，移除所有按钮上的.clicked类
+            $(".top-right-buttons .btn-outline-success, .top-right-buttons .btn-outline-primary, .top-right-buttons .btn-outline-secondary").removeClass("clicked");
+
+            // 清除查詢框
+            $(".search-bar .search-input").val("");
+
+            // 然后，给当前被点击的按钮添加.clicked类
+            $(this).addClass("clicked");
+        });
+    });
+
+    /* 获取轮播图*/
+        $(function() {
+        $.ajax({
+            url: '/api/carousel',
+            method: 'GET',
+            success: function(carouselData) {
+                const $carouselInner = $('.carousel-inner');
+
+                $.each(carouselData, (index, item) => {
+                    const $carouselItem = $('<div>', {
+                        class: 'carousel-item',
+                    });
+
+                    const $img = $('<img>', {
+                        class: 'd-block w-100',
+                        src: item.imagePath,
+                        alt: item.id,
+                    });
+
+                    const $link = $('<a>', {
+                        href: item.targetWebsiteLink || item.imageLink,
+                        target: '_blank',
+                    });
+                    $link.append($img);
+                    $carouselItem.append($link);
+
+                    const $eventName = $('<h3>', {
+                        class: 'event-name',
+                        text: item.eventName,
+                    });
+                    $carouselItem.append($eventName);
+
+                    $carouselInner.append($carouselItem);
+
+                    if (index === 0) {
+                        $carouselItem.addClass('active');
+                    }
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching carousel data:', error);
+            }
+        })
+    });
+</script>
+</script>
+
+
 </script>
 
 </html>
