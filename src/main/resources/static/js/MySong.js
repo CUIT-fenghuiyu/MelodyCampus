@@ -125,7 +125,9 @@ function deleteMusic(id){
 $(function() {
     $('.action-buttons .btn-outline-danger').on('click',  function() {
         var selectedIds = [];
+        console.log(selectedIds);
         $("input[type='checkbox']:checked").each(function() {
+            // 将当前元素所绑定的data-music-id属性值添加到selectedIds数组中
             selectedIds.push($(this).data('music-id'));
         });
 

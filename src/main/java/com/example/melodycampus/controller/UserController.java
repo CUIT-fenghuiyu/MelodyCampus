@@ -1,16 +1,19 @@
 package com.example.melodycampus.controller;
 
+import com.example.melodycampus.common.SessionUtil;
 import com.example.melodycampus.mapper.UserMapper;
 import com.example.melodycampus.model.User;
 import com.example.melodycampus.common.Constant;
 import com.example.melodycampus.common.MD5Util;
 import com.example.melodycampus.common.ResponseBodyMessage;
+import org.apache.tomcat.util.bcel.Const;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @projectName: MelodyCampus
@@ -63,4 +66,76 @@ public class UserController
         }
     }
 
+    /**
+     * 获取全部用户账号密码信息
+     * @return
+     */
+    @RequestMapping("/all")
+    public ResponseBodyMessage<List<User>> all(HttpServletRequest request){
+        // 判断登录用户是否为admin
+        int loginUserType = SessionUtil.getLoginUser(request).getUserType();
+        if(loginUserType != 1){
+            return new ResponseBodyMessage<>(-1,"无权访问",null);
+        }
+
+        // 获取全部注册用户
+        List<User> users = userMapper.selectAll();
+        return new ResponseBodyMessage<>(0,"获取用户信息成功",users);
+    }
+
+    /**
+     * 删除用户
+     * @param id
+     * @param request
+     * @return
+     */
+    @RequestMapping("/delete")
+    public ResponseBodyMessage<Boolean> delete(@RequestParam int id, HttpServletRequest request){
+        // 判断登录用户是否有权限删除
+        int loginUserType = SessionUtil.getLoginUser(request).getUserType();
+        if(loginUserType == 0){
+            return new ResponseBodyMessage<>(-1,"无权限删除",false);
+        }
+
+        int res = userMapper.delete(id);
+        if(res == 1){
+            return new ResponseBodyMessage<>(0,"删除成功",true);
+        }else {
+            return new ResponseBodyMessage<>(-1,"删除失败",false);
+        }
+    }
+
+    /**
+     * 更新用户密码
+     * @param userId
+     * @param newPassword
+     * @param request
+     * @return
+     */
+    @RequestMapping("/updatePassword")
+    public ResponseBodyMessage<Boolean> updatePassword(@RequestParam int userId, @RequestParam String newPassword, HttpServletRequest request){
+        // 判断用户权限
+        int loginUserType = SessionUtil.getLoginUser(request).getUserType();
+        if(loginUserType == 0){
+            return new ResponseBodyMessage<>(-1,"无权限修改",false);
+        }
+
+        // 加密新密码
+        String newEncryptPassword = MD5Util.encrypt(newPassword);
+        int res = userMapper.updatePassword(userId,newEncryptPassword);
+        if(res == 1){
+            return new ResponseBodyMessage<>(0,"修改成功",true);
+        }else {
+            return new ResponseBodyMessage<>(-1,"修改失败",false);
+        }
+    }
+
+    /**
+     * 获取登录用户信息
+     */
+    @RequestMapping("/getLoginUser")
+    public ResponseBodyMessage<User> getLoginUser(HttpServletRequest request){
+        User user = SessionUtil.getLoginUser(request);
+        return new ResponseBodyMessage<>(0,"获取登录用户信息成功",user);
+    }
 }

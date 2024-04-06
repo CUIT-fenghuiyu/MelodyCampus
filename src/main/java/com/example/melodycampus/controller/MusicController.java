@@ -81,6 +81,7 @@ public class MusicController {
 
         // 校验文件类型是否为 MP3
         // TODO: 2024/2/24 底层判断文件类型是否为 MP3
+
         if ("mp3".equalsIgnoreCase(fileType)) {
 
             //  判断文件父目录是否存在，不存在则创建文件父目录
@@ -101,7 +102,7 @@ public class MusicController {
 
         // 歌曲落库
         // 获取歌曲名
-        int index = fileNameAndType.lastIndexOf(".");//lastIndexOf
+        int index = fileNameAndType.lastIndexOf("."); //lastIndexOf
         String title = fileNameAndType.substring(0,index);
 
         // 获取用户id

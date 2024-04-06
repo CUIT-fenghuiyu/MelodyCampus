@@ -3,6 +3,8 @@ package com.example.melodycampus.mapper;
 import com.example.melodycampus.model.User;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * @projectName: MelodyCampus
  * @package: com.example.melodycampus.mapper
@@ -17,4 +19,10 @@ public interface UserMapper {
     User selectByName(String username);
 
     int add(String username, String password);
+
+    List<User> selectAll();
+
+    int delete(int id);
+
+    int updatePassword(int userId, String newEncryptPassword);
 }
