@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="07556ea2-c633-455c-960c-4911bf6b26ac" name="Changes" comment="4/6">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/melodycampus/controller/CommentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/melodycampus/mapper/CommentMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/CommentMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/comments.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/song.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/melodycampus/common/APPConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/melodycampus/common/APPConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/melodycampus/controller/MusicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/melodycampus/controller/MusicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/melodycampus/mapper/MusicMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/melodycampus/mapper/MusicMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/melodycampus/model/comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/melodycampus/model/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/MusicMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/MusicMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/common.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/MusicSquare.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/MusicSquare.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/MyFavorite.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/MyFavorite.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/MySong.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/MySong.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/player.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/player.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="HTML File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/melodycampus/common/SessionUtil.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/melodycampus/controller/UserController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/melodycampus/mapper/MusicMapper.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/melodycampus/mapper/UserMapper.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/melodycampus/model/User.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/resources/mybatis/UserMapper.xml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/resources/static/admin.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/resources/static/js/MusicSquare.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/resources/static/js/MySong.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/resources/static/js/admin.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/resources/static/js/jquery.min.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/resources/static/login.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/resources/static/main.html" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2cikkrrgGaaCRxAP9qdbr5zHTqS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.MelodyCampusApplication.executor&quot;: &quot;Run&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/project/GraduationDesign/MusicCampus/MelodyCampus&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;ceeaf470452fb42830e31cd66a9b59d4&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\project\GraduationDesign\MusicCampus\MelodyCampus\src\main\resources\static\img" />
+      <recent name="F:\project\GraduationDesign\MusicCampus\MelodyCampus\src\main\resources\static\css" />
+      <recent name="F:\project\GraduationDesign\MusicCampus\MelodyCampus\src\main\resources\static\js" />
+      <recent name="F:\project\GraduationDesign\MelodyCampus\src\main\resources\static" />
+      <recent name="F:\project\GraduationDesign\MelodyCampus\src\main\resources\static\css" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\project\GraduationDesign\MusicCampus\MelodyCampus\src\main\java\com\example\melodycampus\mapper" />
+      <recent name="F:\project\GraduationDesign\MusicCampus\MelodyCampus\src\main\resources\static" />
+      <recent name="F:\project\GraduationDesign\MelodyCampus\src\main\resources\static" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.melodycampus.common" />
+      <recent name="com.example.melodycampus.controller" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="MelodyCampusApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.example.melodycampus.MelodyCampusApplication" />
+      <module name="MelodyCampus" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.melodycampus.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+        <option name="credential" />
+        <option name="region" />
+        <option name="useCurrentConnection" value="false" />
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MelodyCampusApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="07556ea2-c633-455c-960c-4911bf6b26ac" name="Changes" comment="" />
+      <created>1708601934224</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1708601934224</updated>
+      <workItem from="1708601935645" duration="37000" />
+      <workItem from="1708602026337" duration="182000" />
+      <workItem from="1708602212689" duration="48000" />
+      <workItem from="1708602341247" duration="11000" />
+      <workItem from="1708602444765" duration="1134000" />
+      <workItem from="1708603609688" duration="14000" />
+      <workItem from="1708604047406" duration="6000" />
+      <workItem from="1708682279231" duration="4182000" />
+      <workItem from="1708688200253" duration="1261000" />
+      <workItem from="1708693803381" duration="38059000" />
+      <workItem from="1708865582083" duration="28895000" />
+      <workItem from="1709612424865" duration="63251000" />
+      <workItem from="1710041000437" duration="1047000" />
+      <workItem from="1710042129173" duration="26234000" />
+      <workItem from="1710218109515" duration="11992000" />
+      <workItem from="1710385289250" duration="8922000" />
+      <workItem from="1711792247179" duration="157000" />
+      <workItem from="1711792806112" duration="431000" />
+      <workItem from="1711793278628" duration="169000" />
+      <workItem from="1711793468259" duration="153000" />
+      <workItem from="1711793641950" duration="396000" />
+      <workItem from="1711794083968" duration="33000" />
+      <workItem from="1711794172890" duration="77000" />
+      <workItem from="1711794310200" duration="110000" />
+      <workItem from="1711794448290" duration="16000" />
+      <workItem from="1711794601243" duration="22000" />
+      <workItem from="1711794679254" duration="2000" />
+      <workItem from="1711795163807" duration="173000" />
+      <workItem from="1711795356885" duration="1634000" />
+      <workItem from="1711797247758" duration="9000" />
+      <workItem from="1711797280111" duration="41000" />
+      <workItem from="1711797338452" duration="70000" />
+      <workItem from="1711797413741" duration="191000" />
+      <workItem from="1711797642854" duration="1023000" />
+      <workItem from="1712022538683" duration="9920000" />
+      <workItem from="1712132408572" duration="35696000" />
+      <workItem from="1712490662251" duration="5523000" />
+      <workItem from="1712572560230" duration="795000" />
+      <workItem from="1712573433455" duration="3239000" />
+      <workItem from="1712760682768" duration="165000" />
+      <workItem from="1712760865964" duration="7321000" />
+      <workItem from="1712888430722" duration="46453000" />
+    </task>
+    <task id="LOCAL-00001" summary="完善MusicController模块">
+      <created>1708777185282</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1708777185282</updated>
+    </task>
+    <task id="LOCAL-00002" summary="3/7">
+      <created>1709869747494</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1709869747494</updated>
+    </task>
+    <task id="LOCAL-00003" summary="3/9">
+      <created>1709994766808</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1709994766808</updated>
+    </task>
+    <task id="LOCAL-00004" summary="3/11">
+      <created>1710163908927</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1710163908927</updated>
+    </task>
+    <task id="LOCAL-00005" summary="4/6">
+      <created>1712408911281</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1712408911281</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="application.properties" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/.." />
+    </ignored-roots>
+    <MESSAGE value="完善MusicController模块" />
+    <MESSAGE value="3/7" />
+    <MESSAGE value="3/9" />
+    <MESSAGE value="3/11" />
+    <MESSAGE value="4/6" />
+    <option name="LAST_COMMIT_MESSAGE" value="4/6" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
