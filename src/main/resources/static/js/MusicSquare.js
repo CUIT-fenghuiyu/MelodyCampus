@@ -25,7 +25,7 @@
                     html += "<td>";
                     html += "<div class='btn-group'>";
                     html += "<button class='btn btn-secondary' onclick='musicMark("+music.id+")'><i class='fas fa-heart' data-song-id="+ music.id +"></i></button>";
-                    html += "<button class='btn btn-info'>查看</button>";
+                    html += "<a class='btn btn-info' href='song.html?id=" + music.id + "'>查看</a>";
                     html += "</div>";
                     html += "</td>";
                     html += "</tr>";
@@ -144,7 +144,7 @@
                 if (result.status == 0) {
                     alert("上传成功！");
 
-                    loadMusic();
+                    getMusicList();
 
                     /*清除文件和歌手名称输入框中的内容*/
                     $('.action-buttons .upload-btn').val('');

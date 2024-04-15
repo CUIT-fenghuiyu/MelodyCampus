@@ -24,7 +24,7 @@ function loadLoveMusic(musicName){
                     html += "<td>";
                     html += "<div class='btn-group'>";
                     html += "<button class='btn btn-secondary' onclick='musicMarkMyFavorite("+music.id+")'><i class='fas fa-heart' data-song-id="+ music.id +"></i></button>";
-                    html += "<button class='btn btn-info'>查看</button>";
+                    html += "<a class='btn btn-info' href='song.html?id=" + music.id + "'>查看</a>";
                     html += "</div>";
                     html += "</td>";
                     html += "</tr>";

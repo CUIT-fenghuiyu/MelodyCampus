@@ -10,6 +10,12 @@ function loadAllMusic(musicName){
             console.log("loadAllMusic：");
             console.log(result);
 
+            // 获取所有th元素，并修改相应文本
+            var ths = document.querySelectorAll('.content-table th');
+            ths[1].textContent='歌名';
+            ths[2].textContent='歌手';
+            ths[3].textContent='歌曲';
+
             var html = "";
             if (result.status == 0) {
                 var musicList = result.data;
@@ -23,7 +29,7 @@ function loadAllMusic(musicName){
                     html += "<td><button class='btn btn-success' onclick='playMusic(\""+ music.url +".mp3" +"\",  \"" + music.title + "\", \"" + music.singer + "\")'>播放</button></td>";
                     html += "<td>";
                     html += "<div class='btn-group'>";
-                    html += "<button class='btn btn-info'>查看</button>";
+                    html += "<a class='btn btn-info' href='song.html?id=" + music.id + "'>查看</a>";
                     html += '<button class="btn btn-outline-danger" onclick="deleteMusic('+ music.id+ ')"><i class="fas fa-trash-alt"></i> 删除</button>'
                     html += "</div>";
                     html += "</td>";
@@ -145,60 +151,6 @@ function deleteSelectedMusics(musicIds) {
     });
 }
 
-// 为按钮设置点击事件监听器
-$(function() {
-    /*歌曲管理*/
-    $(".top-right-buttons .btn-outline-secondary").click(function() {
-        loadAllMusic();
-        getCarousel();
-
-        // 显示查询组件、删除选中音乐按钮、轮播图
-        $(".search-bar").show();
-        $(".action-buttons .btn-outline-danger").show();
-        $(".carousel-container").show();
-
-        // 绑定查询按钮监听事件
-        $(".search-bar .btn-primary").on('click', selectByMusicName);
-
-        $(".top-right-buttons .btn-outline-secondary").addClass("clicked");
-
-    });
-
-    /*账号管理*/
-    $(".top-right-buttons .btn-outline-primary").click(function() {
-        loadAllUser();
-
-        // 隐藏查询组件
-        $(".search-bar").hide();
-
-        // 隐藏删除选中音乐按钮
-        $(".action-buttons .btn-outline-danger").hide();
-
-        // 隐藏轮播图
-        $(".carousel-container").hide();
-
-
-        // 初始化模态框
-        $('#updatePasswordModal').modal({
-            // 不需要初始化模态框,使用默认设置
-        });
-    });
-
-});
-
-/*点击右上角按钮后的效果*/
-$(function() {
-    // 当两个个按钮中的任何一个被点击时
-    $(".top-right-buttons .btn-outline-secondary, .top-right-buttons .btn-outline-primary").click(function() {
-        // 首先，移除所有按钮上的.clicked类
-        $(".top-right-buttons .btn-outline-secondary, .top-right-buttons .btn-outline-primary").removeClass("clicked");
-
-        // 然后，给当前被点击的按钮添加.clicked类
-        $(this).addClass("clicked");
-    });
-});
-
-
 /*使用postMessage API在主页面和iframe之间传递消息。*/
 function playMusic(url, name, artist){
     var playerIframe = document.getElementById('musicPlayer');
@@ -252,7 +204,7 @@ function loadAllUser(){
                     html += "<td>" + role + "</td>";
                     html += "<td>";
                     html += "<div class='btn-group'>";
-                    html += "<button class='btn btn-primary' onclick='updatePWD(" + user.id + ")'> 修改密码</button>";
+                    html += "<button class='btn btn-primary' onclick='showUpdatePasswordModal(" + user.id + ")'> 修改密码</button>";
                     html += "<button class='btn btn-danger' onclick='deleteUser(" + user.id + ")'> 删除账号</button>";
                     html += "</div>";
                     html += "</td>";
@@ -265,12 +217,10 @@ function loadAllUser(){
     });
 }
 
-// 显示模态框并设置用户ID
-function updatePWD(userId){
-    // 设置修改密码模态框的用户ID
-    $('#userId').val(userId);
-    // 显示模态框
+// 唤出修改密码弹窗
+function showUpdatePasswordModal(userId) {
     $('#updatePasswordModal').modal('show');
+    $('#userId').val(userId);
 }
 
 
@@ -337,7 +287,111 @@ function deleteUser(id){
                 }
                 loadAllUser();
             }
-    })}else {
+        })}else {
         return;
     }
 }
+
+/*查询所有活动*/
+/*function loadAllEvent(){
+    $.ajax({
+        url: "/event/all",
+        type: "GET",
+        success: function (result) {
+            console.log("loadAllEvent：");
+            console.log(result);
+
+            // 获取所有th元素，并修改相应文本
+            var ths = document.querySelectorAll('.content-table th');
+            ths[1].textContent='活动名称';
+            ths[2].textContent='活动描述';
+            ths[3].textContent='活动';
+
+            if (result.status == 0){
+                var eventList = result.data;
+                for (var i = 0; i < eventList.length; i++) {
+                    var event = eventList[i];
+                    var html = "";
+                    html += "<tr>";
+                    html += "<td><input type='checkbox' data-event-id=" + event.id + "></td>";
+                    html += "<td>" + event.EventName + "</td>";
+                    html += "<td>" + event.Description + "</td>";
+                    html += "<td>" + event.imageUrl + "</td>";
+                    html += <button ></button>
+                }
+            }
+
+            $("#musicList").html(html);
+        }
+
+    })
+}*/
+
+// 为按钮设置点击事件监听器
+$(function() {
+    /*歌曲管理*/
+    $(".top-right-buttons .btn-outline-secondary").click(function() {
+        loadAllMusic();
+        getCarousel();
+
+        // 显示查询组件、删除选中音乐按钮、轮播图
+        $(".search-bar").show();
+        $(".action-buttons .btn-outline-danger").show();
+        $(".carousel-container").show();
+
+        // 绑定查询按钮监听事件
+        $(".search-bar .btn-primary").on('click', selectByMusicName);
+
+        $(".top-right-buttons .btn-outline-secondary").addClass("clicked");
+
+    });
+
+    /*账号管理*/
+    $(".top-right-buttons .btn-outline-primary").click(function() {
+        loadAllUser();
+
+        // 隐藏查询组件
+        $(".search-bar").hide();
+
+        // 隐藏删除选中音乐按钮
+        $(".action-buttons .btn-outline-danger").hide();
+
+        // 隐藏轮播图
+        $(".carousel-container").hide();
+
+
+        // 初始化模态框
+        $('#updatePasswordModal').modal({
+            // 不需要初始化模态框,使用默认设置
+        });
+    });
+
+    /*/!*活动管理*!/
+    $(".top-right-buttons .btn-outline-success").click(function() {
+        loadAllEvent();
+
+        // 隐藏查询组件
+        $(".search-bar").hide();
+
+        // 隐藏删除选中音乐按钮
+        $(".action-buttons .btn-outline-danger").hide();
+
+        // 隐藏轮播图
+        $(".carousel-container").hide();
+
+
+    });*/
+
+});
+
+/*点击右上角按钮后的效果*/
+$(function() {
+    // 当按钮中的任何一个被点击时
+    $(".top-right-buttons .btn-outline-secondary, .top-right-buttons .btn-outline-primary/*, .top-right-buttons .btn-outline-success*/").click(function() {
+        // 首先，移除所有按钮上的.clicked类
+        $(".top-right-buttons .btn-outline-secondary, .top-right-buttons .btn-outline-primary/*, .top-right-buttons .btn-outline-success*/").removeClass("clicked");
+
+        // 然后，给当前被点击的按钮添加.clicked类
+        $(this).addClass("clicked");
+    });
+});

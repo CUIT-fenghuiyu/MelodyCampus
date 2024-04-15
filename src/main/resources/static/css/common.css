@@ -40,8 +40,8 @@ html, body {
  * 导航栏中的图标样式
  */
 .nav img {
-    width: 40px; /* 设置图标宽度为40px */
-    height: 40px; /* 设置图标高度为40px */
+    width: 50px; /* 设置图标宽度为40px */
+    height: 50px; /* 设置图标高度为40px */
     margin-left: 30px; /* 设置左边距为30px */
     margin-right: 10px; /* 设置右边距为10px */
     border-radius: 50%; /* 设置圆角为50%实现圆形效果 */

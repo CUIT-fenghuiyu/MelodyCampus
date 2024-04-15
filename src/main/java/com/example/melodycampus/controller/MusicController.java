@@ -230,6 +230,22 @@ public class MusicController {
     }
 
     /**
+     * 获取音乐信息
+     * @param id
+     * @return
+     */
+    @RequestMapping("/getMusicInfo")
+    public ResponseBodyMessage<Music> getMusicInfo(@RequestParam int id) {
+        Music music = musicMapper.findMusicById(id);
+        if(music == null) {
+            return new ResponseBodyMessage<>(-1,"没有该id的音乐",null);
+        }else {
+            return new ResponseBodyMessage<>(0,"查询成功",music);
+        }
+
+    }
+
+    /**
      * 查询音乐(根据有无音乐名返回)
      * @param musicName
      * @return
@@ -264,5 +280,34 @@ public class MusicController {
         return new ResponseBodyMessage<>(0, "find my musicList success", musicList);
     }
 
+    /**
+     * 分页查询音乐列表
+     * @param page
+     * @param size
+     * @return
+     */
+    @RequestMapping("/getMusicList")
+    public ResponseBodyMessage<List<Music>> getMusicList(@RequestParam("page") int page, @RequestParam("size") int size){
+        if(page>0 && size>0){
+            // 计算limit和offset的值
+            int limit = size;
+            int offset = size*(page-1);
+            return new ResponseBodyMessage<>(0,"查询成功",musicMapper.findMusicList(limit,offset));
+        }
 
+        return new ResponseBodyMessage<>(-1,"查询失败",null);
+    }
+
+    /**
+     * 计算上传的音乐一共有多少页
+     * @param size
+     * @return
+     */
+    @RequestMapping("/totalpage")
+    public ResponseBodyMessage<Integer> getTotalPage(@RequestParam("size") int size){
+        int musicCount = musicMapper.getMusicCount();
+        int totalPage = (int)Math.ceil(musicCount*1.0/size); //通过Math.ceil(小数会转换成大的整数)计算出总页数
+
+        return new ResponseBodyMessage<> (0,"查询成功",totalPage);
+    }
 }

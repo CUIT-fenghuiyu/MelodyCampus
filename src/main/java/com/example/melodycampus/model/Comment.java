@@ -10,10 +10,11 @@ import lombok.Data;
  * @description：    评论表
  */
 @Data
-public class comment {
+public class Comment {
     private int id;
-    private String content;
     private int userId;
-    private int postId;
+    private int musicId;
+    private String content;
     private String commentdate;
+    private String username;
 }

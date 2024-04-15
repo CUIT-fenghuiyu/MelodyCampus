@@ -69,4 +69,8 @@ public interface MusicMapper {
     List<Music> findMyMusicByUidAndName(int userId, String musicName);
 
     List<Music> findMyMusicByUid(int userId);
+
+    List<Music> findMusicList(int limit, int offset);
+
+    int getMusicCount();
 }

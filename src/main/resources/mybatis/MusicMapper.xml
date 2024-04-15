@@ -38,5 +38,11 @@
     <select id="findMyMusicByUid" resultType="com.example.melodycampus.model.Music">
         select * from music where userid = #{userId};
     </select>
+    <select id="findMusicList" resultType="com.example.melodycampus.model.Music">
+        select * from music limit #{arg0} offset #{arg1};
+    </select>
+    <select id="getMusicCount" resultType="java.lang.Integer">
+        select count(*) from music;
+    </select>
 
 </mapper>
